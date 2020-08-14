@@ -5,8 +5,7 @@ from queue import PriorityQueue
 
 AssignedJob = namedtuple("AssignedJob", ["worker", "started_at"])
 
-# Import the heap functions from python library 
-from heapq import heappush, heappop, heapify  
+
   
 
 
@@ -16,9 +15,9 @@ def assign_jobs(n_workers, jobs):
         q.put((0,i))
     result=[]
     for job in jobs:
-        a,b=q.get()
-        result.append(AssignedJob(b,a))
-        q.put((a+job,b))
+        priority,thread=q.get()
+        result.append(AssignedJob(thread,priority))
+        q.put((priority+job,thread))
     return result
 
 
